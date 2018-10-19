@@ -2,7 +2,11 @@
     height: 50;
   }
 
-  ul {
+.navbar {
+    position: fixed;
+}
+
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -41,16 +45,4 @@ body, html {
     background-size: cover;
 }
 
-.content {
-    padding: 16px;
-  }
   
-  .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-  }
-  
-  .sticky + .content {
-    padding-top: 60px;
-  }

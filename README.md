@@ -28,8 +28,10 @@ If the query response doesn't include any doctors (for instance, if no doctors m
 ## Setup/Installation Requirements
 
 1. Clone this repository at https://github.com/moliver05/Doctor_LookUp
-2. Open Terminal and type in (-npm install)
-3. To run, type in (-npm run start)
+2. Get You Api Key at https://developer.betterdoctor.com/ (sign up)
+3. Make your own .env file on the Root folder
+3. Open Terminal and type in (-npm install)
+4. To run, type in (-npm run start)
 
 ## Known Bugs
 * No known bugs at this time.
