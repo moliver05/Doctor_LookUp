@@ -1,9 +1,56 @@
 #map {
-    height: 100%;
+    height: 50;
   }
-  /* Optional: Makes the sample page fill the window. */
-  html, body {
-    height: 100%;
+
+  ul {
+    list-style-type: none;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+    border: 1.5px solid white;
+    background-color: #3c61a5;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: rgb(93, 186, 209);
+}
+
+    
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.header {
+    background-image: url("https://www.healthcareitnews.com/sites/default/files/07-baylor-scott-white-hillcrest1.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.content {
+    padding: 16px;
+  }
+  
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  .sticky + .content {
+    padding-top: 60px;
   }
