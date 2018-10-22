@@ -10,7 +10,7 @@
   <div class="header"></div>
 
   <div id="navbar">
-    <ul>
+    <ul id="list">
       <li><a class="active" href="#home">Home</a></li>
       <li><a href="https://www.seattletimes.com/seattle-news/health/">News</a></li>
       <li><a href="https://www.kingcounty.gov/depts/health.aspx">Contact</a></li>
@@ -24,29 +24,28 @@
       <h1>Search Your Doctor</h1>
     </center>
   </div>
-
+  <div class="container">
   <form id="doctorForm" autocomplete="off">
-    <div class="container">
       <h3>Search by Name</h3>
       <label for="doctorSearch"></label>
       <input type="text" id="doctorSearch">
-
+      <button class="btn btn-success" type="submit">Submit</button>
+  </form>
+  <br>
+  <form id="illnessForm" autocomplete="off">
       <h3>Search Current Illness</h3>
       <label for="illnessSearch"></label>
       <input type="text" id="illnessSearch">
-
-      <hr />
       <button class="btn btn-success" type="submit">Submit</button>
   </form>
   </div>
   <br>
   <div class="container">
     <ul id="results"></ul>
-    <h3 id="error"></h3>
   </div>
+</body>
 
-
-
+</html>
 
   <!-- <div id="map"></div>
     <script>
@@ -78,6 +77,3 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3O1Wgzr3yZlsERIJ4-eUBgp_lFPIG4so&callback=initMap">
     </script> -->
-</body>
-
-</html>
