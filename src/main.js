@@ -2,32 +2,56 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import { searchDoctor } from "./doctor.js";
+import { Search } from "./doctor.js";
 
 $(document).ready(function () {
-    $("#doctorForm").submit(function (event) {
-        event.preventDefault();
-        $("#results").text("");
-        $("#error").text("");
-        let doctor = $("#doctorSearch").val();
-        let illness = $("#illnessSearch").val();
-        let newSearch = new searchDoctor();
+  $("#doctorForm").submit(function(event) {
+    event.preventDefault();
+    $("#results").text("");
+    $("#error").text("");
+    let doctor = $("#doctorSearch").val();
+    let newSearch = new Search();
+    let promise = newSearch.foundDoctor(doctor);
 
-        let promise = newSearch.currentStatus(doctor, illness);
-        promise.then(function (response) {
-            let body = JSON.parse(response);
-            if (body.data.length === 0) {
-                $("#error").text("No doctor found, try another one.");
-            }
-            body.data.forEach(function (doctor) {
-                $("#results").append(`<li>${doctor.profile.first_name} ${doctor.profile.last_name} <br>
-                ${doctor.practices[0]} </li> <br>`)
-              });
+    promise.then(function (response) {
+      let body = JSON.parse(response);
+      let result = body.data;
+      console.log(result);
 
-        }, function (error) {
-            $('.showErrors').text(`There was an error processing your request: ${error.message}`);
-        });
+      if (body.data.length === 0) {
+        $("#results").text("No doctor found, try another one.");
+      }
+      for(var i=0; i < result.length; i++) {
+        $("#results").append("<h4>" + result[i].profile.first_name +" " + result[i].profile.last_name + "</h4>"+ "Phone number: " + result[i].practices[0].phones[0].number + "<br>" +  "<br>" + "<h5>" + "Address : " + "</h5>" + "City: " + result[i].practices[0].visit_address.city + "<br>" + "State: " + result[i].practices[0].visit_address.state + "<br>" +
+        "Street: " + result[i].practices[0].visit_address.street + "<br>" +
+        "Zip: " + result[i].practices[0].visit_address.zip + "<br>" +
+        "Available: " + result[i].practices[0].accepts_new_patients + "<br>" + "<hr>");
+      }
+  });
+});
+  //
+  $("#illnessForm").submit(function (event) {
+    event.preventDefault();
+    $("#results").text("");
+    $("#error").text("");
+    let illness = $("#illnessSearch").val();
+    let newSearch = new Search();
+    let promise = newSearch.foundIllness(illness);
 
+    promise.then(function (response) {
+      let body = JSON.parse(response);
+      let result = body.data;
+      if (body.data.length === 0) {
+        $("#error").text("Results not found.");
+      }
+      for(var i=0; i < result.length; i++) {
+        $("#results").append("<h4>" + result[i].profile.first_name +" " + result[i].profile.last_name + "</h4>"+ "Phone number: " + result[i].practices[0].phones[0].number + "<br>" +  "<br>" + "<h5>" + "Address : " + "</h5>" + "City: " + result[i].practices[0].visit_address.city + "<br>" + "State: " + result[i].practices[0].visit_address.state + "<br>" +
+        "Street: " + result[i].practices[0].visit_address.street + "<br>" +
+        "Zip: " + result[i].practices[0].visit_address.zip + "<br>" +
+        "Available: " + result[i].practices[0].accepts_new_patients + "<br>" +
+        "Bio: " + result[i].profile.bio + "<br>" + "<hr>" );
+      }
+  })
+  })
 
-    });
 });
